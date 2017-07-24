@@ -1,29 +1,24 @@
 language: android
-jdk:
-  - oraclejdk8
-sudo: required
 android:
-  components:
-    - tools
-    - platform-tools
-    - tools
-    - build-tools-26.0.0
-    - android-26
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - extra-android-support
+   components:
+   - tools
+   - tools
+
+jdk: oraclejdk8
+
+sudo: required
+
+before_script:
+  - (while sleep 3; do echo "y"; done) | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools" "extras;android;m2repository" "extras;google;m2repository" "build-tools;26.0.0" "platforms;android-26"
+
+script:
+  - ./gradlew clean assembleDebug --stacktrace
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --skin 480x800
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-script:
-  - ./gradlew clean jacocoTestReport lintDebug
