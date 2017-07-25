@@ -1,15 +1,14 @@
-package pl.xdk78.nastoage
+package pl.xdk78.nastoage.ui
 
-import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import pl.xdk78.nastoage.R
 
-/**
- * A placeholder fragment containing a simple view.
- */
-class MainActivityFragment : Fragment() {
+
+class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
