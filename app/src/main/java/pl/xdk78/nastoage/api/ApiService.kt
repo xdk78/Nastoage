@@ -1,8 +1,9 @@
 package pl.xdk78.nastoage.api
 
+import io.reactivex.Observable
 import pl.xdk78.nastoage.model.Article
-import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
@@ -13,11 +14,12 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("posts")
-    fun getNews(): Call<Article>
+    fun getNews(): Observable<List<Article>>
 
     companion object Factory {
         fun create(): ApiService {
             val retrofit = Retrofit.Builder()
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl("https://nastoletni.pl/wp-json/wp/v2/")
                     .build()
