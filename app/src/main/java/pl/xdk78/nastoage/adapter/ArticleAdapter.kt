@@ -26,6 +26,11 @@ class ArticleAdapter(var context: Context, var articles: List<Article>) : Recycl
         holder.title.text = Html.fromHtml(item.title.rendered)
         holder.content.text = Html.fromHtml(item.excerpt.rendered)
 
+        /*Glide.with(context)
+                .asDrawable()
+                .load(item.links.featuredmedia.href.guid.rendered)
+                .into((holder).image)
+        */
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ArticleAdapterViewHolder {
@@ -40,5 +45,6 @@ class ArticleAdapter(var context: Context, var articles: List<Article>) : Recycl
     class ArticleAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.find<TextView>(R.id.title)
         val content: TextView = view.find<TextView>(R.id.content)
+        // val image: ImageView = view.find<ImageView>(R.id.main_image)
     }
 }
