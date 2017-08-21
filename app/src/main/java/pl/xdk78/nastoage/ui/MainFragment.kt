@@ -1,6 +1,7 @@
 package pl.xdk78.nastoage.ui
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_main.*
 import org.jetbrains.anko.support.v4.find
 import pl.xdk78.nastoage.R
 import pl.xdk78.nastoage.adapter.ArticleAdapter
@@ -31,10 +33,14 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getData()
+        swiperefresh.setOnRefreshListener {
+            swiperefresh.isRefreshing = true
+            getData(view!!)
+        }
+        getData(view!!)
     }
 
-    fun getData() {
+    fun getData(view: View) {
         val repository = RepositoryProvider.provideRepository()
         compositeDisposable.add(
                 repository.getNews()
@@ -47,8 +53,11 @@ class MainFragment : Fragment() {
                             recyclerView.layoutManager = LinearLayoutManager(activity)
                             adapter = ArticleAdapter(activity, articles)
                             recyclerView.adapter = adapter
+                            swiperefresh.isRefreshing = false
                         }, { error ->
-                            Log.e("NewsAPI", error.stackTrace.toString())
+                            Log.e("NewsAPI", error.toString())
+                            Snackbar.make(view, error.toString(), Snackbar.LENGTH_LONG).show()
+                            swiperefresh.isRefreshing = false
                         })
         )
     }
