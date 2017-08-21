@@ -1,17 +1,14 @@
 package pl.xdk78.nastoage.ui
 
 import android.os.Bundle
-
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
-import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
-
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.xdk78.nastoage.R
 
@@ -33,11 +30,6 @@ class MainActivity : AppCompatActivity() {
                 background = R.drawable.side_nav_bar
                 savedInstance = savedInstanceState
                 translucentStatusBar = true
-
-                profile("Nastoletni", "nastoletni@nastoletni.pl") {
-                    icon = R.drawable.ic_person
-                    identifier = 100
-                }
             }
 
             primaryItem("Newsy") {

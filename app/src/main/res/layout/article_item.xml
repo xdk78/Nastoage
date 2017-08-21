@@ -6,7 +6,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    cardview:cardCornerRadius="1dp"
+    cardview:cardCornerRadius="4dp"
     cardview:cardElevation="1dp"
     cardview:cardUseCompatPadding="true">
 
@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textSize="18sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/content"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textColor="?android:attr/textColorSecondary"
             android:layout_below="@+id/title"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

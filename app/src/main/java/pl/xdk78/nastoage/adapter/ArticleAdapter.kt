@@ -24,7 +24,7 @@ class ArticleAdapter(var context: Context, var articles: List<Article>) : Recycl
     override fun onBindViewHolder(holder: ArticleAdapterViewHolder, position: Int) {
         val item = articles[position]
         holder.title.text = Html.fromHtml(item.title.rendered)
-        holder.content.text = Html.fromHtml(item.content.rendered)
+        holder.content.text = Html.fromHtml(item.excerpt.rendered)
 
     }
 
