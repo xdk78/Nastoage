@@ -17,7 +17,8 @@ class Repository(val apiService: ApiService) {
     }
 
     fun getDevLogs(): Observable<List<Article>> {
-        return apiService.getCuriosities(13)
+        return apiService.getDevLogs(13)
+
     }
 
 }
