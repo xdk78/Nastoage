@@ -1,5 +1,6 @@
 package pl.xdk78.nastoage.ui
 
+
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment.newInstance()).commit()
 
         result = drawer {
             hasStableIds = true
@@ -35,12 +37,16 @@ class MainActivity : AppCompatActivity() {
             primaryItem("Newsy") {
                 identifier = 0
                 onClick { _ ->
-                    false
+                    val fragment = MainFragment.newInstance()
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    true
+
                 }
             }
+        }
 
         }
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -70,3 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
+
+

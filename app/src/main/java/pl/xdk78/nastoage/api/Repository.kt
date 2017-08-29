@@ -12,4 +12,12 @@ class Repository(val apiService: ApiService) {
         return apiService.getNews()
     }
 
+    fun getCuriosities(): Observable<List<Article>> {
+        return apiService.getCuriosities(12)
+    }
+
+    fun getDevLogs(): Observable<List<Article>> {
+        return apiService.getCuriosities(13)
+    }
+
 }

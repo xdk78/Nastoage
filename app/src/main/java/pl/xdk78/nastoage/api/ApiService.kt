@@ -14,6 +14,7 @@ import retrofit2.http.Query
  */
 interface ApiService {
 
+    
     @GET("posts")
     fun getNews(): Observable<List<Article>>
 
