@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 /**
@@ -15,6 +16,15 @@ interface ApiService {
 
     @GET("posts")
     fun getNews(): Observable<List<Article>>
+
+    @GET("posts")
+    fun getCuriosities(@Query("categories") id: Int): Observable<List<Article>>
+
+    @GET("posts")
+    fun getDevLogs(@Query("categories") id: Int): Observable<List<Article>>
+
+
+
 
     companion object Factory {
         fun create(): ApiService {
@@ -27,5 +37,6 @@ interface ApiService {
             return retrofit.create(ApiService::class.java)
         }
     }
+
 
 }
