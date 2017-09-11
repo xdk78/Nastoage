@@ -21,22 +21,23 @@ import pl.xdk78.nastoage.api.RepositoryProvider
 import pl.xdk78.nastoage.model.Article
 
 
-class MainFragment : Fragment() {
+class DevLogFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ArticleAdapter
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     companion object {
-        fun newInstance(): MainFragment {
-            val fragment = MainFragment()
+        fun newInstance(): DevLogFragment {
+            val fragment = DevLogFragment()
             return fragment
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_dev_log, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -52,13 +53,12 @@ class MainFragment : Fragment() {
     fun getData(view: View) {
         val repository = RepositoryProvider.provideRepository()
         compositeDisposable.add(
-                repository.getNews()
+                repository.getDevLogs()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
-                        .subscribe({
-                            items ->
+                        .subscribe({ items ->
                             val articles: List<Article> = items
-                            recyclerView = find<RecyclerView>(R.id.articles)
+                            recyclerView = find<RecyclerView>(R.id.devlogs_articles)
                             recyclerView.layoutManager = LinearLayoutManager(activity)
                             adapter = ArticleAdapter(activity, articles)
 
@@ -66,7 +66,7 @@ class MainFragment : Fragment() {
 
                             swiperefresh.isRefreshing = false
                         }, { error ->
-                            Log.e("NewsAPI", error.toString())
+                            Log.e("DevLogs Api", error.toString())
                             Snackbar.make(view, error.toString(), Snackbar.LENGTH_LONG).show()
                             swiperefresh.isRefreshing = false
                         })

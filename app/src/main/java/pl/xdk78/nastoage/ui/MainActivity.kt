@@ -43,6 +43,22 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
+            primaryItem("DevLogi") {
+                identifier = 1
+                onClick { _ ->
+                    val fragment = DevLogFragment.newInstance()
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    true
+                }
+            }
+            primaryItem("Ciekawostki") {
+                identifier = 2
+                onClick { _ ->
+                    val fragment = CuriositesFragment.newInstance()
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    true
+                }
+            }
         }
 
         }
