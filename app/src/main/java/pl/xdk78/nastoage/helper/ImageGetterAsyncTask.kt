@@ -17,13 +17,15 @@ class ImageGetterAsyncTask(@SuppressLint("StaticFieldLeak") private val context:
     @SuppressLint("StaticFieldLeak")
     private var t: TextView? = null
     private val TAG = "IMG"
+
     override fun doInBackground(vararg params: TextView): Bitmap? {
         t = params[0]
-        try {
+        return try {
             Log.d(TAG, "Downloading the image from: " + source)
-            return Glide.with(context).asBitmap().load(source).submit().get()
+            Glide.with(context).asBitmap().load(source).submit().get()
         } catch (e: Exception) {
-            return null
+            Log.e(TAG, e.message)
+            null
         }
 
     }
@@ -41,7 +43,8 @@ class ImageGetterAsyncTask(@SuppressLint("StaticFieldLeak") private val context:
             levelListDrawable.setBounds(0, 0, bitmap.width * multiplier, bitmap.height * multiplier)
             levelListDrawable.level = 1
             t!!.text = t!!.text // invalidate() doesn't work correctly...
-        } catch (e: Exception) { /* Like a null bitmap, etc. */
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
         }
 
     }
