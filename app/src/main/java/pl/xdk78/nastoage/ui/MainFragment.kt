@@ -3,7 +3,6 @@ package pl.xdk78.nastoage.ui
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -26,16 +25,30 @@ class MainFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ArticleAdapter
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
+    private var article_Id: Int? = null;
     companion object {
         fun newInstance(): MainFragment {
             val fragment = MainFragment()
+
+
             return fragment
+
+
+        }
+    }
+
+    private fun readBundle(bundle: Bundle?) {
+        if (bundle != null) {
+            article_Id = bundle.getInt("id")
+            if (article_Id == 0) {
+                article_Id == null;
+            }
+
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
+        readBundle(arguments);
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -52,7 +65,8 @@ class MainFragment : Fragment() {
     fun getData(view: View) {
         val repository = RepositoryProvider.provideRepository()
         compositeDisposable.add(
-                repository.getNews()
+
+                repository.getArticles(article_Id)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({

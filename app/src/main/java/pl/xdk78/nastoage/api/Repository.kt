@@ -8,17 +8,11 @@ import pl.xdk78.nastoage.model.Article
  */
 class Repository(val apiService: ApiService) {
 
-    fun getNews(): Observable<List<Article>> {
-        return apiService.getNews()
+
+    fun getArticles(id: Int?): Observable<List<Article>> {
+        return apiService.getArticles(id)
     }
 
-    fun getCuriosities(): Observable<List<Article>> {
-        return apiService.getCuriosities(12)
-    }
 
-    fun getDevLogs(): Observable<List<Article>> {
-        return apiService.getDevLogs(13)
-
-    }
 
 }

@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
                 onClick { _ ->
                     val fragment = MainFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    val bundle = Bundle();
+                    bundle.putInt("id", 0);
+                    fragment.setArguments(bundle);
                     true
 
                 }
@@ -46,16 +49,22 @@ class MainActivity : AppCompatActivity() {
             primaryItem("DevLogi") {
                 identifier = 1
                 onClick { _ ->
-                    val fragment = DevLogFragment.newInstance()
+                    val fragment = MainFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    val bundle = Bundle();
+                    bundle.putInt("id", 13);
+                    fragment.setArguments(bundle);
                     true
                 }
             }
             primaryItem("Ciekawostki") {
                 identifier = 2
                 onClick { _ ->
-                    val fragment = CuriositesFragment.newInstance()
+                    val fragment = MainFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+                    val bundle = Bundle();
+                    bundle.putInt("id", 12);
+                    fragment.setArguments(bundle);
                     true
                 }
             }

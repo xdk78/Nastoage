@@ -14,15 +14,11 @@ import retrofit2.http.Query
  */
 interface ApiService {
 
+
+    @GET("posts")
+    fun getArticles(@Query("categories") id: Int?): Observable<List<Article>>
     
-    @GET("posts")
-    fun getNews(): Observable<List<Article>>
 
-    @GET("posts")
-    fun getCuriosities(@Query("categories") id: Int): Observable<List<Article>>
-
-    @GET("posts")
-    fun getDevLogs(@Query("categories") id: Int): Observable<List<Article>>
 
 
 
