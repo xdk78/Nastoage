@@ -4,7 +4,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import pl.xdk78.nastoage.App
-import pl.xdk78.nastoage.di.ActivityBuilder
+import pl.xdk78.nastoage.di.module.ActivityBuilder
 import pl.xdk78.nastoage.di.module.AppModule
 import pl.xdk78.nastoage.di.module.api.ApiModule
 import javax.inject.Singleton

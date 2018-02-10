@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pl.xdk78.nastoage.ui.MainFragment"
+    tools:context="pl.xdk78.nastoage.ui.NewsFragment"
     tools:showIn="@layout/activity_main">
 
     <android.support.v4.widget.SwipeRefreshLayout

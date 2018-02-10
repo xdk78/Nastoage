@@ -1,4 +1,4 @@
-package pl.xdk78.nastoage.di
+package pl.xdk78.nastoage.di.module
 
 
 import dagger.Module
