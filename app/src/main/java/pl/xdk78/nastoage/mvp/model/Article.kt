@@ -1,10 +1,8 @@
-package pl.xdk78.nastoage.model
+package pl.xdk78.nastoage.mvp.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Created by xdk78 on 2017-07-28.
- */
+
 data class Article(
         @SerializedName("id") val id: Int,
         @SerializedName("title") val title: Title,

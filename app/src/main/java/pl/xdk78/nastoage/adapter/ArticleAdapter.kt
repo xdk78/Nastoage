@@ -14,11 +14,9 @@ import android.widget.TextView
 import org.jetbrains.anko.find
 import pl.xdk78.nastoage.R
 import pl.xdk78.nastoage.helper.ImageGetterAsyncTask
-import pl.xdk78.nastoage.model.Article
+import pl.xdk78.nastoage.mvp.model.Article
 
-/**
- * Created by xdk78 on 2017-07-28.
- */
+
 class ArticleAdapter(private var context: Context, private var articles: List<Article>) : RecyclerView.Adapter<ArticleAdapter.ArticleAdapterViewHolder>() {
 
     @SuppressLint("PrivateResource")
@@ -32,7 +30,7 @@ class ArticleAdapter(private var context: Context, private var articles: List<Ar
                     val d = LevelListDrawable()
                     val empty = ContextCompat.getDrawable(context, R.drawable.abc_btn_check_material)
                     d.addLevel(0, 0, empty)
-                    d.setBounds(0, 0, empty.intrinsicWidth, empty.intrinsicHeight)
+                    d.setBounds(0, 0, empty!!.intrinsicWidth, empty.intrinsicHeight)
                     ImageGetterAsyncTask(context, source, d).execute(holder.content)
                     d
                 }, null)

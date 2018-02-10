@@ -1,23 +1,14 @@
 package pl.xdk78.nastoage
 
-import android.app.Application
 
-/**
- * Created by xdk78 on 2017-07-23.
- */
-class App : Application() {
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
+import pl.xdk78.nastoage.di.component.DaggerMainComponent
 
-    private var instance: App? = null
 
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }
+class App : DaggerApplication() {
 
-    fun getInstance(): App {
-        if (instance == null) {
-            instance = App()
-        }
-        return instance as App
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+            DaggerMainComponent.builder().create(this)
+
 }

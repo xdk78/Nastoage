@@ -2,7 +2,6 @@ package pl.xdk78.nastoage.ui
 
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import co.zsmb.materialdrawerkt.builders.accountHeader
@@ -12,8 +11,9 @@ import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.xdk78.nastoage.R
+import pl.xdk78.nastoage.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var result: Drawer
     private lateinit var headerResult: AccountHeader
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MainFragment.newInstance()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, NewsFragment.newInstance()).commit()
 
         result = drawer {
             hasStableIds = true
@@ -37,11 +37,11 @@ class MainActivity : AppCompatActivity() {
             primaryItem("Newsy") {
                 identifier = 0
                 onClick { _ ->
-                    val fragment = MainFragment.newInstance()
+                    val fragment = NewsFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
-                    val bundle = Bundle();
-                    bundle.putInt("id", 0);
-                    fragment.setArguments(bundle);
+                    val bundle = Bundle()
+                    bundle.putInt("id", 0)
+                    fragment.arguments = bundle
                     true
 
                 }
@@ -49,22 +49,22 @@ class MainActivity : AppCompatActivity() {
             primaryItem("DevLogi") {
                 identifier = 1
                 onClick { _ ->
-                    val fragment = MainFragment.newInstance()
+                    val fragment = NewsFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
-                    val bundle = Bundle();
-                    bundle.putInt("id", 13);
-                    fragment.setArguments(bundle);
+                    val bundle = Bundle()
+                    bundle.putInt("id", 13)
+                    fragment.arguments = bundle
                     true
                 }
             }
             primaryItem("Ciekawostki") {
                 identifier = 2
                 onClick { _ ->
-                    val fragment = MainFragment.newInstance()
+                    val fragment = NewsFragment.newInstance()
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
-                    val bundle = Bundle();
-                    bundle.putInt("id", 12);
-                    fragment.setArguments(bundle);
+                    val bundle = Bundle()
+                    bundle.putInt("id", 12)
+                    fragment.arguments = bundle
                     true
                 }
             }
@@ -93,11 +93,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (result.isDrawerOpen) {
-            result.closeDrawer()
-        }
-        else {
-            super.onBackPressed()
+        when {
+            result.isDrawerOpen -> result.closeDrawer()
+            else -> super.onBackPressed()
         }
     }
 }
